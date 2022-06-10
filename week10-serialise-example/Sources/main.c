@@ -7,12 +7,12 @@
 #include "simple_serial.h"
 
 
-struct MSG_HEADER{
-  int sentinel;
-  char msg_type[8];
-  unsigned int msg_size;
-  unsigned int header_time;
-  int end_sentinel;
+struct MSG_HEADER{	//tells whoever is reading it, 'what is to come next?'
+  int sentinel;		//Indicating the start of the header
+  char msg_type[8];	//tells python what type of message is coming (button, gyro...)
+  unsigned int msg_size;	//how big is the message going to be? (no neccesarily needed)
+  unsigned int header_time;	//read from TCNT (what was the time at which this header was sent?)
+  int end_sentinel;	//indicating the end of the header
 };
 
 struct MSG_GYRO{
