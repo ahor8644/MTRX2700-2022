@@ -22,7 +22,7 @@ def read_packet(f):
     print("message size: " + str(header_data[2]))
 
     if message_type == b"text":
-        text_bytes = f.read(header_data[2])
+        text_bytes = f.read(header_data[2])     //POINTER IS AUTOMATICALLY UPDATED AFTER EACH f.read() --> thats why this starts from the message and not the header.
         print("text message: " + str(text_bytes))
     elif message_type == b"gyro":
         gyro_bytes = f.read(header_data[2])
