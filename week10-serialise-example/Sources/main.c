@@ -29,20 +29,21 @@ struct MSG_BUTTONS{
   unsigned int last_press_time;
 };
 
-void SendGyroMsg(int rot_x, int rot_y, int rot_z) {
-  struct MSG_HEADER gyro_header = {0xABCD, "gyro", 0, 0, 0xDCBA};
-  struct MSG_GYRO gyro_message = {0x9876, 0, 0, 0, 0};
-                             
-  gyro_header.msg_size = sizeof(struct MSG_GYRO);
+void SendGyroMsg(int rot_x, int rot_y, int rot_z) {		//sending gyro message
+  struct MSG_HEADER gyro_header = {0xABCD, "gyro", 0, 0, 0xDCBA};	//make a gyro header
+  struct MSG_GYRO gyro_message = {0x9876, 0, 0, 0, 0};			//make an arbitrary message (to be filled in)
+  
+  //FILL IN THE HEADER AND GYRO MESSAGE CONTENTS
+  gyro_header.msg_size = sizeof(struct MSG_GYRO);	//message size
   gyro_header.header_time = TCNT;
   
-  gyro_message.last_sample_time = TCNT;
+  gyro_message.last_sample_time = TCNT;			
   gyro_message.rotation_x = rot_x;
   gyro_message.rotation_y = rot_y;
   gyro_message.rotation_z = rot_z;
   
-  SerialOutputBytes((char*)&gyro_header, sizeof(struct MSG_HEADER), &SCI1);  
-  SerialOutputBytes((char*)&gyro_message, sizeof(struct MSG_GYRO), &SCI1);  
+  SerialOutputBytes((char*)&gyro_header, sizeof(struct MSG_HEADER), &SCI1);  //outputting the HEADER
+  SerialOutputBytes((char*)&gyro_message, sizeof(struct MSG_GYRO), &SCI1);  //outputting the actual message/gyro data
 }
 
 void SendButtonsMsg() {
