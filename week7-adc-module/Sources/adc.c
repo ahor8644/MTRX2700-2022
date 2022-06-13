@@ -26,9 +26,9 @@ __interrupt void TC6_ISR(void) {
   int counter = 0;
    
   TC6 =TCNT + 24000;   // interrupt at 100Hz assuming prescaler =1
-  TFLG1=TFLG1 | TFLG1_C6F_MASK;
+  TFLG1=TFLG1 | TFLG1_C6F_MASK;   //reset flag --> enable channel 6 interrupt to happen again
 
-  PORTB = 0x00;
+  PORTB = 0x00;   //turn off LEDs
 
   for (counter = 0; counter < interface_count; counter++) {
    
