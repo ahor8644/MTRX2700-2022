@@ -32,7 +32,7 @@ __interrupt void TC6_ISR(void) {
   TFLG1=TFLG1 | TFLG1_C6F_MASK;   //reset flag --> enable channel 6 interrupt to happen again
 
   PORTB = 0x00;   //turn off LEDs
-
+  
   //convert each input (pot and LDR) to digital
   for (counter = 0; counter < interface_count; counter++) {
    
