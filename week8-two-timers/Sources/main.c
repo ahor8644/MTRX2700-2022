@@ -15,13 +15,15 @@ void main(void) {
   TSCR1_TEN = 1;
   TSCR2 = 0x07;   // prescaler 128
   
+  //Output compare CHANNEL 6
   TIOS_IOS6 = 1;
   TCTL1_OL6 = 1;
-  TIE_C6I = 1;
+  TIE_C6I = 1;		//PTT6 toggles
 
+  //Output compare CHANNEL 7
   TIOS_IOS7 = 1;
   TCTL1_OL7 = 1;
-  TIE_C7I = 1;
+  TIE_C7I = 1;		//PTT7 toggles
 
   SerialInitialise(BAUD_9600, &SCI1);  
 
