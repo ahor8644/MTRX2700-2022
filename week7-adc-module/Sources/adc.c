@@ -33,15 +33,16 @@ __interrupt void TC6_ISR(void) {
 
   PORTB = 0x00;   //turn off LEDs
 
+  //convert each input (pot and LDR) to digital
   for (counter = 0; counter < interface_count; counter++) {
    
-    ATD0CTL5 = interfaces[counter].channel_to_read;
+    ATD0CTL5 = interfaces[counter].channel_to_read;   //starting the conversion by writing to CTL5
   
     // wait for the ADC to finish
     while(!(ATD0STAT0 & 0x80));
     
     // call the callback associated with this ADC channel    
-    interfaces[counter].callback_function(ATD0DR0L);
+    interfaces[counter].callback_function(ATD0DR0L);    //input to the callback_function is the conversion result! (unsigned char)
   }
 }
 
