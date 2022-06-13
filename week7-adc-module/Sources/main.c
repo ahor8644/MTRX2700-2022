@@ -29,13 +29,13 @@ void PotReading(unsigned char value) {
 
 void main(void) {
   
-  // set up the timers  
+  //Timer Setup --> Channel 6 for output compare
   TSCR1_TEN = 1;
   TSCR2 = 0x07;   // prescaler 128
   
-  TIOS_IOS6 = 1;
-  TCTL1_OL6 = 1;
-  TIE_C6I = 1;
+  TIOS_IOS6 = 1;	//channel 6 output compare
+  TCTL1_OL6 = 1;	//Toggle PTT6
+  TIE_C6I = 1;		//output compare interrupt enable channel 6
 
   // set up the ADC
   ATD0CTL2 = 0x80;     //Turn on ADC,..No Interrupt
