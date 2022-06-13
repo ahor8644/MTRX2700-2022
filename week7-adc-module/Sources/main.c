@@ -49,7 +49,7 @@ void main(void) {
   PTJ = 0x0;        //Allow the LEDs to dsiplay data on PORTB pins
 
   // register the different ADC channels and include a callback function for each
-  RegisterADC(0x87, &PotReading); // pot is on CHANNEL 7 (right justified, unsigned,single-conver,one channel only) 
+  RegisterADC(0x87, &PotReading); // pot is on CHANNEL 7 (right justified, unsigned,single-conver,one channel only)
   RegisterADC(0x84, &LightReading); // light sensor is on CHANNEL 4 (right justified, unsigned,single-conver,one channel only) 
 
 	EnableInterrupts;
